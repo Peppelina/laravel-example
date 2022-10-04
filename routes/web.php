@@ -19,7 +19,12 @@ Route::get('/', function () {
 
 Route::get ('/my_page', 'MyPlaceController@index');
 
-
 Route::get('/my_city', 'MyPlaceController@city');
 
 Route::get('/my_hobby', 'MyPlaceController@hobby');
+
+
+Route::get('/posts', 'PostController@index');
+Route::get('/posts/create', 'PostController@create');
+Route::get('/posts/update', 'PostController@update');
+Route::get('/posts/delete', 'PostController@delete');
