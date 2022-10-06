@@ -8,14 +8,15 @@ use Illuminate\Http\Request;
 class PostController extends Controller
 {
     public function index() {
-//        $posts = Post::all();
+      //$posts = Post::all();
 //        foreach ($posts as $post) {
 //            dd($post);
 //        }
-        $posts = Post::where('is_published', 1)->get(); //коллецкия
-        foreach ($posts as $post) {
-            dump ($post -> title);
-        }
+        //$posts = Post::where('is_published', 1)->get(); //коллекция
+//        foreach ($posts as $post) {
+//            dump ($post -> title);
+//        }
+        return view('posts');
     }
 
     public function create() {
