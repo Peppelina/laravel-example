@@ -12,6 +12,10 @@ class Post extends Model
     use SoftDeletes;
 
     protected $table = 'posts';
-    protected $guarded = [];
+    protected $guarded = []; //ни одно поле не защищено отредактирования через ларавель
+
+    public function category() {
+        return $this->hasOne(Category::class, 'id', 'category_id');
+    }
 
 }
