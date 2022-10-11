@@ -16,6 +16,7 @@
                 <input type="text" name="image" class="form-control" id="image"  placeholder="image">
             </div>
 
+
             <button type="submit" class="btn btn-primary mt-3">Create</button>
         </form>
     </div>

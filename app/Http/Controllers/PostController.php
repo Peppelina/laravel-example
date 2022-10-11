@@ -4,21 +4,28 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Post;
+use App\Models\Tag;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
     public function index()
     {
-        /*$category = Category::find(1);
+        //$posts = Post::all();
+        //$category = Category::find(1);
         //$posts = Post::where('is_published', 1)->get();
-        $posts = $category->posts;*/ //выводит посты опредленной категории
+        //$posts = $category->posts; //выводит посты определенной категории
+        // dd($post->category); // выводит категорию поста
 
-        $post = Post::find(2);
-        dd($post->category); // выводит категорию поста
+         //$post = Post::find(1);
+       // dd($post->tags); // выводит все теги у поста с id 1
+
+        $tag = Tag::find(1);
+        dd($tag->posts); // выводит все посты с тегом с id 1
 
 
-        return view('post.index', compact('posts'));
+
+        //return view('post.index', compact('posts'));
     }
 
     public function create()
