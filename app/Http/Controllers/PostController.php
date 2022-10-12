@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Post;
+use App\Models\PostTag;
 use App\Models\Tag;
 use Illuminate\Http\Request;
 
@@ -17,8 +18,8 @@ class PostController extends Controller
         //$posts = $category->posts; //выводит посты определенной категории
         // dd($post->category); // выводит категорию поста
 
-         //$post = Post::find(1);
-       // dd($post->tags); // выводит все теги у поста с id 1
+        //$post = Post::find(1);
+        // dd($post->tags); // выводит все теги у поста с id 1
 
         //$tag = Tag::find(1);
         //dd($tag->posts); // выводит все посты с тегом с id 1
@@ -29,7 +30,8 @@ class PostController extends Controller
     public function create()
     {
         $categories = Category::all();
-        return view('post.create', compact('categories'));
+        $tags = Tag::all();
+        return view('post.create', compact('categories', 'tags'));
     }
 
     public function store()
@@ -39,16 +41,30 @@ class PostController extends Controller
             'content' => 'string',
             'image' => 'string',
             'category_id' => '',
+            'tags' => '',
         ]);
+        $tags = $data['tags'];
+        unset($data['tags']);
 
-        Post::create($data);
+        $post = Post::create($data);
+        $post->tags()->attach($tags); //привязываем тег к посту
+
+//        foreach ($tags as $tag) {
+//            PostTag::firstOrCreate(
+//              [
+//                  'tag_id' => $tag,
+//                  'post_id' => $post->id,
+//              ]
+//            );
+//        }
         return redirect()->route('post.index');
     }
 
     public function show(Post $post)
     {
-        //$post = Post::findOrFail($id);
-        //dd($post->title);
+       //$category =  Category::where('categories.id', '=', $post->category_id)->first();
+        $post->with('category:name')->get();
+
         return view('post.show', compact('post'));
     }
 

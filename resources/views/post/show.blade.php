@@ -5,8 +5,15 @@
             {{ $post->id }}. {{ $post->title }}
         </div>
         <div>
+            Контент:
             {{ $post->content }}
         </div>
+        @if ($post->category)
+            <div>
+                Категория:
+                {{ $post->category->name }}
+            </div>
+        @endif
         <div>
             <a href="{{ route('post.edit', $post->id) }} " class="btn btn-primary mb-3">Edit</a>
         </div>
