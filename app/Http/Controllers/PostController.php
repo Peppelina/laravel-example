@@ -11,7 +11,7 @@ class PostController extends Controller
 {
     public function index()
     {
-        //$posts = Post::all();
+        $posts = Post::all();
         //$category = Category::find(1);
         //$posts = Post::where('is_published', 1)->get();
         //$posts = $category->posts; //выводит посты определенной категории
@@ -20,17 +20,16 @@ class PostController extends Controller
          //$post = Post::find(1);
        // dd($post->tags); // выводит все теги у поста с id 1
 
-        $tag = Tag::find(1);
-        dd($tag->posts); // выводит все посты с тегом с id 1
+        //$tag = Tag::find(1);
+        //dd($tag->posts); // выводит все посты с тегом с id 1
 
-
-
-        //return view('post.index', compact('posts'));
+        return view('post.index', compact('posts'));
     }
 
     public function create()
     {
-        return view('post.create');
+        $categories = Category::all();
+        return view('post.create', compact('categories'));
     }
 
     public function store()
@@ -39,6 +38,7 @@ class PostController extends Controller
             'title' => 'string',
             'content' => 'string',
             'image' => 'string',
+            'category_id' => '',
         ]);
 
         Post::create($data);
@@ -54,7 +54,8 @@ class PostController extends Controller
 
     public function edit(Post $post)
     {
-        return view('post.edit', compact('post'));
+        $categories = Category::all();
+        return view('post.edit', compact('post', 'categories'));
     }
 
     public function update(Post $post)
@@ -63,6 +64,7 @@ class PostController extends Controller
             'title' => 'string',
             'content' => 'string',
             'image' => 'string',
+            'category_id' => '',
         ]);
         $post->update($data);
         return redirect()->route('post.show', $post->id);
