@@ -15,11 +15,11 @@ class Post extends Model
     protected $guarded = []; //ни одно поле не защищено от редактирования через ларавель
 
     public function category() {
-        return $this->hasOne(Category::class, 'id', 'category_id');
+        return $this->belongsTo(Category::class); // принадлежит
+
     }
 
     public function tags() {
-        return $this->belongsToMany(Tag::class, 'post_tags', 'post_id', 'tag_id');
+        return $this->belongsToMany(Tag::class); // имеет много
     }
-
 }
