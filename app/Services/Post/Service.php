@@ -12,6 +12,7 @@ class Service
         unset($data['tags']);
 
         $post = Post::create($data);
+
         $post->tags()->attach($tags); //привязываем тег к посту
 
 //        foreach ($tags as $tag) {
