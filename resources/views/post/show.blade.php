@@ -14,6 +14,14 @@
                 {{ $post->category->name }}
             </div>
         @endif
+        @if ($post->tags)
+            <div>
+                Теги:
+                @foreach($post->tags as $tag)
+                    {{ $tag->title }}
+                @endforeach
+            </div>
+        @endif
         <div>
             <a href="{{ route('post.edit', $post->id) }} " class="btn btn-primary mb-3">Edit</a>
         </div>

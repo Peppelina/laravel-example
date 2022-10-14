@@ -10,7 +10,8 @@ class ShowController extends Controller
     public function __invoke(Post $post)
     {
         //$category =  Category::where('categories.id', '=', $post->category_id)->first();
-        $post->with('category:name')->get(); // связываем пост с именем катгеории
+        //$post->with('category:name')->get(); // связываем пост с именем категории
+       // $post->with('tags')->get(); // связываем пост с тэгами
 
         return view('post.show', compact('post'));
     }

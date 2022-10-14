@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Post;
 
 use App\Http\Controllers\Controller;
 use App\Models\Post;
+use App\Models\Tag;
 
 class IndexController extends Controller
 {
@@ -23,6 +24,6 @@ class IndexController extends Controller
         //dd($post->tags); // выводит тэги, которые имеются у поста с id 2
 
 
-        return view('post.index', compact('posts'));
+       return view('post.index', compact('posts'));
     }
 }
