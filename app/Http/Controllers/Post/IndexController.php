@@ -10,7 +10,7 @@ class IndexController extends BaseController
 {
     public function __invoke()
     {
-        $posts = Post::all();
+        $posts = Post::paginate(10);
         //$post = Post::find(2);
         //dd($post->category); // выводит категорию поста с id 2
 
@@ -22,7 +22,6 @@ class IndexController extends BaseController
 
         //$post = Post::find(2);
         //dd($post->tags); // выводит тэги, которые имеются у поста с id 2
-
 
        return view('post.index', compact('posts'));
     }

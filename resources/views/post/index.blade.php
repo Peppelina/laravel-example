@@ -9,5 +9,9 @@
                 <a href="{{ route('post.show' , $post-> id) }}">{{$post->id}}. {{$post->title}}</a>
             </div>
         @endforeach
+
+        <div>
+            {{ $posts->links()}}
+        </div>
     </div>
 @endsection
